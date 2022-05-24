@@ -20,7 +20,7 @@ namespace PortalPL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(DepartmentVM model)
+        public async Task<IActionResult> Create(DepartmentVM model)
         {
             try
             {
