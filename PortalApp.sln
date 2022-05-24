@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalPL", "Portal.PL\PortalPL.csproj", "{264A8A22-27EC-4FD2-8419-5914B8DEF779}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalBL", "Portal.BL\PortalBL.csproj", "{397BD3CE-880A-4797-9E7D-BA95085794E9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalDAL", "Portal.DAL\PortalDAL.csproj", "{720C6210-6D68-4B1B-A0DE-AFED6A7177D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{264A8A22-27EC-4FD2-8419-5914B8DEF779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264A8A22-27EC-4FD2-8419-5914B8DEF779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264A8A22-27EC-4FD2-8419-5914B8DEF779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264A8A22-27EC-4FD2-8419-5914B8DEF779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397BD3CE-880A-4797-9E7D-BA95085794E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397BD3CE-880A-4797-9E7D-BA95085794E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397BD3CE-880A-4797-9E7D-BA95085794E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397BD3CE-880A-4797-9E7D-BA95085794E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{720C6210-6D68-4B1B-A0DE-AFED6A7177D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720C6210-6D68-4B1B-A0DE-AFED6A7177D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{720C6210-6D68-4B1B-A0DE-AFED6A7177D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720C6210-6D68-4B1B-A0DE-AFED6A7177D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3B5B7DB-F195-4DD8-9818-175B67F64FCB}
+	EndGlobalSection
+EndGlobal

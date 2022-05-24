@@ -1,0 +1,27 @@
+﻿@model DepartmentVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="block-header">
+    <h2 >Create Department</h2>
+</div>
+
+<form asp-action="Save" asp-controller="Department" class="form-group">
+  <div class="form-group">
+    <label asp-for="Name">DepartName:</label>
+    <input type="text" class="form-control" asp-for="Name" autocomplete="off" >
+  </div>
+  <div class="form-group">
+    <label asp-for="Code">Code:</label>
+    <input type="text" class="form-control" asp-for="Code">
+  </div>
+ <center>
+      
+  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="reset" class="btn btn-danger">Cancel</button>
+ </center>
+</form>
+<script>
+   
+</script>

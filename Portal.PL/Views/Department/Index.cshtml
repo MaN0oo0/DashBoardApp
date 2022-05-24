@@ -1,0 +1,53 @@
+﻿@model  IEnumerable<DepartmentVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Welcom To DepartMent</h2>
+
+<a asp-action="Create" asp-controller="Department" class="btn btn-primary">Create New Department</a>
+@*<select>
+@foreach (var item in ViewBag.data)
+{
+    <option>@item</option>
+}
+</select>*@
+
+@*<input type="text" list="mylist" />
+<datalist id="mylist">
+@foreach (var item in ViewBag.data)
+{
+    <option>@item</option>
+}
+</datalist>*@
+
+@*<ul>
+    @foreach (var item in ViewBag.data)
+{
+    <li>@item</li>
+}
+</ul>*@
+
+
+  <table class="table tabel-hover table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Code</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+      <tr>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.Code</td>
+      </tr>
+        }
+    </tbody>
+  </table>
+  <script> 
+  alert(@TempData["error"])
+  </script>
