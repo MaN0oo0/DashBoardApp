@@ -1,7 +1,27 @@
+using PortalBL.Interface;
+using PortalBL.Reposatroy;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add Transint
+
+//builder.Services.AddTransient<IDepartment, DepartmentRep>();
+
+
+//Add Scopped
+
+builder.Services.AddScoped<IDepartment, DepartmentRep>();
+
+
+//Add SingleTone
+
+//builder.Services.AddSingleton<IDepartment, DepartmentRep>();
+
+
+
 
 var app = builder.Build();
 

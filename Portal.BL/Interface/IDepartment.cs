@@ -17,5 +17,6 @@ namespace PortalBL.Interface
         Task CreateAsync(DepartmentVM obj);
         Task UpdateAsync(DepartmentVM obj);
         Task DeleteAsync(int id);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PortalBL.Interface;
 using PortalBL.Models;
 using PortalBL.Reposatroy;
 
@@ -6,8 +7,22 @@ namespace PortalPL.Controllers
 {
     public class DepartmentController : Controller
     {
-        DepartmentRep depart = new DepartmentRep();
-        
+        //  private readonly DepartmentRep depart; ====> tightly coupled 
+        private readonly IDepartment depart;//======> Loosly coupled 
+
+        public DepartmentController(IDepartment depart)
+        {
+            this.depart = depart;
+        }
+
+
+        // public DepartmentController()
+        // {
+        //depart = new DepartmentRep();
+        // }
+
+
+        //  DepartmentRep depart = new DepartmentRep();
         public async Task<IActionResult> Index()
         {
          var data = await depart.GetData();
@@ -82,6 +97,7 @@ namespace PortalPL.Controllers
         {
             var data = await depart.GetDataById(id);
             return View(data);
+
         }
 
         [HttpPost]
