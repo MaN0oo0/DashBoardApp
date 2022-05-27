@@ -48,5 +48,21 @@ namespace PortalBL.Reposatroy
            
                 return data;
         }
+
+      
+        public async Task UpdateAsync(DepartmentVM obj)
+        {
+            var OldData = db.Department.Find(obj.Id);
+            OldData.Name = obj.Name;
+            OldData.Code = obj.Code;
+            await db.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var OldData = db.Department.Find(id);
+            db.Department.Remove(OldData);
+           await db.SaveChangesAsync();
+        }
     }
 }

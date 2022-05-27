@@ -1,19 +1,21 @@
 ﻿@model DepartmentVM
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
 <div class="block-header">
-    <h2 >Create Department</h2>
+    <h2 >Update: @Model.Name </h2>
 </div>
 
-<form asp-controller="Department" asp-action="Create"  class="form-group">
-    <div asp-validation-summary="All" class="text-danger font-bold"></div>
+<form asp-controller="Department" asp-action="Update"  class="form-group">
+<div asp-validation-summary="All" class=" text-danger font-bold"></div>
+    <input type="hidden" asp-for="Id" />
   <div class="form-group">
     <label asp-for="Name">DepartName:</label>
     <input type="text" class="form-control" asp-for="Name" autocomplete="off" >
     <span asp-validation-for="Name" class="text text-danger font-bold"></span>
   </div>
+
   <div class="form-group">
     <label asp-for="Code">Code:</label>
     <input type="text" class="form-control" asp-for="Code" autocomplete="off">
@@ -21,9 +23,9 @@
   </div>
  <center>
       
-  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="submit" class="btn btn-success">Update</button>
   <button type="reset" class="btn btn-danger">Cancel</button>
- </center>
+      <a asp-action="index" asp-controller="Department" class="btn btn-primary">Return</a> </center>
 </form>
 @section Valdiation{
     <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
