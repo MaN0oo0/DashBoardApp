@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using PortalDAL.Entity;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,15 @@ namespace PortalDAL.Database
 {
     public class ApplicationContext:DbContext
     {
-        public DbSet<Department> Department { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public ApplicationContext(DbContextOptions <ApplicationContext> opt):base(opt)
         {
-            optionsBuilder.UseSqlServer("Data Source=MOHAMMED\\SQLEXPRESS;database=PortalDB;Integrated Security=True;");
+
         }
+        public DbSet<Department> Department { get; set; }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data Source=MOHAMMED\\SQLEXPRESS;database=PortalDB;Integrated Security=True;");
+        //}
     }
 }

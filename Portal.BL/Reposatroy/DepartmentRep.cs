@@ -13,7 +13,12 @@ namespace PortalBL.Reposatroy
 {
     public class DepartmentRep : IDepartment
     {
-        ApplicationContext db = new ApplicationContext();
+        private readonly ApplicationContext db;
+
+        public DepartmentRep(ApplicationContext db)
+        {
+            this.db = db;
+        }
 
        
         public async Task CreateAsync(DepartmentVM obj)

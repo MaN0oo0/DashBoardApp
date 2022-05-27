@@ -1,11 +1,18 @@
+using Microsoft.EntityFrameworkCore;
 using PortalBL.Interface;
 using PortalBL.Reposatroy;
+using PortalDAL.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Enhancement ConnectionString
+var connectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+options.UseSqlServer(connectionString));
 //Add Transint
 
 //builder.Services.AddTransient<IDepartment, DepartmentRep>();
