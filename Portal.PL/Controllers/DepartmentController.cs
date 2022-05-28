@@ -1,18 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PortalBL.Interface;
 using PortalBL.Models;
 using PortalBL.Reposatroy;
+using PortalDAL.Entity;
 
 namespace PortalPL.Controllers
 {
     public class DepartmentController : Controller
     {
-        //  private readonly DepartmentRep depart; ====> tightly coupled 
-        private readonly IDepartment depart;//======> Loosly coupled 
+        // private readonly DepartmentRep depart;// ====> tightly coupled 
+       private readonly IDepartment depart;//======> Loosly coupled 
+        private readonly IMapper mapper;
 
-        public DepartmentController(IDepartment depart)
+        public DepartmentController(IDepartment depart,IMapper mapper)
         {
             this.depart = depart;
+            this.mapper = mapper;
         }
 
 
@@ -26,9 +30,10 @@ namespace PortalPL.Controllers
         public async Task<IActionResult> Index()
         {
          var data = await depart.GetData();
-            return View(data);
+          var res = mapper.Map<IEnumerable<DepartmentVM>>(data);
+            return View(res);
         }
-        [HttpGet]
+    
         public async Task<IActionResult> Create()
         {
             return View();
@@ -39,9 +44,11 @@ namespace PortalPL.Controllers
         {
             try
             {
+
                 if (ModelState.IsValid)
                 {
-                await depart.CreateAsync(model);
+                    var res= mapper.Map<Department>(model);
+                 await depart.CreateAsync(res);
                  return RedirectToAction("Index");
 
                 }
@@ -59,15 +66,17 @@ namespace PortalPL.Controllers
         public async Task<IActionResult> Details(int id)
         {
            var data=await depart.GetDataById(id);
-
-            return View(data);
+            var res=mapper.Map<DepartmentVM>(data);
+            return View(res);
             
         }
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
             var data= await depart.GetDataById(id);
-            return View(data);
+            var res = mapper.Map<DepartmentVM>(data);
+
+            return View(res);
         }
 
         [HttpPost]
@@ -77,7 +86,8 @@ namespace PortalPL.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await depart.UpdateAsync(model);
+                    var res =mapper.Map<Department>(model);
+                    await depart.UpdateAsync(res);
                     return RedirectToAction("Index");
 
                 }
@@ -96,7 +106,8 @@ namespace PortalPL.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var data = await depart.GetDataById(id);
-            return View(data);
+            var res = mapper.Map<DepartmentVM>(data);
+            return View(res);
 
         }
 

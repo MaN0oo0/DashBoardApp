@@ -3,9 +3,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Welcom To DepartMent</h2>
 
-<a asp-action="Create" asp-controller="Department" class="btn btn-primary">Create New Department</a>
+<h2>Welcom To DepartMent</h2>
+<div class="row">
+    
+<a asp-action="Create" asp-controller="Department" class="btn btn-primary text-uppercase m" >Create New Department</a>
+</div>
 @*<select>
 @foreach (var item in ViewBag.data)
 {
@@ -68,3 +71,7 @@
         }
     </tbody>
   </table>
+
+  @section Custom{
+        <link href="~/css/Custom.css" rel="stylesheet"/>
+    }

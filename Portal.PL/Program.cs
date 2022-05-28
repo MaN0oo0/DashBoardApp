@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using PortalBL.Interface;
+using PortalBL.Mapper;
 using PortalBL.Reposatroy;
 using PortalDAL.Database;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,20 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationCon
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 options.UseSqlServer(connectionString));
+
+// Auto Mapper
+builder.Services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
+
+
+
+// Add Transient ==> Will take instance with every operation
+//builder.Services.AddTransient<IDepaertmentRep, DepartmentRep>();
+
+
+// Add Scoped
+builder.Services.AddScoped<IDepartment, DepartmentRep>();
+
+
 //Add Transint
 
 //builder.Services.AddTransient<IDepartment, DepartmentRep>();
@@ -20,7 +36,7 @@ options.UseSqlServer(connectionString));
 
 //Add Scopped
 
-builder.Services.AddScoped<IDepartment, DepartmentRep>();
+//builder.Services.AddScoped<IDepartment, DepartmentRep>();
 
 
 //Add SingleTone

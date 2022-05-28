@@ -21,46 +21,30 @@ namespace PortalBL.Reposatroy
         }
 
        
-        public async Task CreateAsync(DepartmentVM obj)
+        public async Task CreateAsync(Department obj)
         {
-            Department d = new Department()
-            {
-                Name = obj.Name,
-                Code = obj.Code,
-            };
-           await db.AddAsync(d);
-              await   db.SaveChangesAsync();
+   
+           await db.AddAsync(obj);
+         await   db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<DepartmentVM>> GetData()
+        public async Task<IEnumerable<Department>> GetData()
         {
-            var data = await db.Department.Select(x => new DepartmentVM()
-            {
-                Name= x.Name,
-                Code= x.Code,
-                Id= x.Id
-            }).ToListAsync();
+            var data = await db.Department.ToListAsync();
             return data;
         }
 
-        public async Task<DepartmentVM> GetDataById(int id)
+        public async Task<Department> GetDataById(int id)
         {
-                var data = await db.Department.Where(x=>x.Id == id).Select(x=>new DepartmentVM()
-                {
-                    Id= x.Id,
-                    Code=x.Code,
-                    Name=x.Name
-                }).FirstOrDefaultAsync();
+                var data = await db.Department.Where(x=>x.Id == id).FirstOrDefaultAsync();
            
                 return data;
         }
 
       
-        public async Task UpdateAsync(DepartmentVM obj)
+        public async Task UpdateAsync(Department obj)
         {
-            var OldData = db.Department.Find(obj.Id);
-            OldData.Name = obj.Name;
-            OldData.Code = obj.Code;
+            db.Entry(obj).State = EntityState.Modified;
             await db.SaveChangesAsync();
         }
 

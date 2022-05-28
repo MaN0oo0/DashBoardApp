@@ -1,0 +1,12 @@
+.m {
+    width: 90%;
+ 
+    background-color: rgba(62, 62, 197, 0.658);
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    margin: 20px;
+    display: block;
+  
+    font-size: 40px;
+}

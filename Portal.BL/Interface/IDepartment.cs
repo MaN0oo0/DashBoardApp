@@ -10,12 +10,12 @@ namespace PortalBL.Interface
 {
     public interface IDepartment
     {
-        Task<IEnumerable<DepartmentVM>> GetData();
+        Task<IEnumerable<Department>> GetData();
 
-        Task<DepartmentVM> GetDataById(int id);
+        Task<Department> GetDataById(int id);
 
-        Task CreateAsync(DepartmentVM obj);
-        Task UpdateAsync(DepartmentVM obj);
+        Task CreateAsync(Department obj);
+        Task UpdateAsync(Department obj);
         Task DeleteAsync(int id);
 
     }
