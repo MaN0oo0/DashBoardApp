@@ -1,0 +1,127 @@
+﻿@model  IEnumerable<EmployeeVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2>Welcom To Employee_Sys</h2>
+@*
+@foreach (var item in ViewBag.data)
+{
+    <option>@item</option>
+}
+
+
+@*<input type="text" list="mylist" />
+<datalist id="mylist">
+@foreach (var item in ViewBag.data)
+{
+    <option>@item.Name</option>
+}
+</datalist>*@
+
+@*<ul>
+    @foreach (var item in ViewBag.data)
+{
+    <li>@item</li>
+}
+</ul>*@
+
+
+<style>
+    tr ,th , tbody , thead{
+        text-align:center !important;
+    }
+    
+</style>
+
+
+
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary m">Create New Employee</a>
+
+<br /> <br />
+
+
+<form asp-controller="Employee" asp-action="Index">
+    <div class="container-fluid">
+    <div class="row d-flex align-items-center">
+        <div class="col-lg-10 col-md-6 col-sm-8 col-xs-6">
+            <input type="text" class="form-control" name="SearchValue" />
+        </div>
+        
+        @*<div class="col-lg-2 col-md-4 ">
+            <input type="submit" value="search" class="btn btn-success" />
+        </div>*@
+        <div class="col-sm-4 col-lg-2 col-md-6 col-xs-6">
+       
+            <input type="submit" value="search" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+</form>
+
+<br /> <br />
+<div class="row">
+            
+     <div class="col-lg-10 col-md-6 col-sm-8 col-xs-6">
+
+<table class="table table-hover table-striped text-center table-bordered font-bold">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Hire Date</th>
+            <th>Department</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+           
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Salary
+                </td>
+                <td>
+                    @item.HireDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.Department.Name
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+                </div>
+
+</div>
+
+
+
+  @section Custom{
+        <link href="~/css/Custom.css" rel="stylesheet"/>
+        <link href="~/css/materialize.css" />
+<link href="~/css/style.min.css" />
+<script src="~/js/pages/index.js"></script>
+    }

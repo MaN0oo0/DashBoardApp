@@ -1,0 +1,30 @@
+﻿@model EmployeeVM
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="block-header">
+   <h2>Are you sure to delete Delete : @Model.Name  </h2>
+</div>
+
+
+
+<form asp-controller="Employee" asp-action="Delete" class="form-group">
+
+
+
+    <input type="hidden" asp-for="Id" />
+
+    @{await Html.RenderPartialAsync("~/Views/Partials/Employee/DeleteDetails.cshtml");}
+
+
+
+    <center class="mt-5 p-5" style="margin:60px auto">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Return</a>
+            <a asp-controller="Employee" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning">Update</a>
+    </center>
+
+</form>
+

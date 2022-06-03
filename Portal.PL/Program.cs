@@ -27,6 +27,7 @@ builder.Services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
 
 // Add Scoped
 builder.Services.AddScoped<IDepartment, DepartmentRep>();
+builder.Services.AddScoped<IEmployee, EmployeeRep>();
 
 
 //Add Transint

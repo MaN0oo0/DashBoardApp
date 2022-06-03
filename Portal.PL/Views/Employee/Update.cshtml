@@ -1,0 +1,36 @@
+﻿@model EmployeeVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="block-header">
+   <h2>Update : @Model.Name </h2>
+</div>
+
+
+
+<form asp-controller="Employee" asp-action="Update" class="form-group">
+
+
+    <div asp-validation-summary="All" class="text-danger font-bold"></div>
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CreationDate" />
+
+
+    @{await Html.RenderPartialAsync("~/Views/Partials/Employee/CreateEdit.cshtml");}
+
+   
+
+    <center style="margin:60px auto">
+        <input type="submit" value="Update" class="btn btn-primary" />
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+    </center>
+
+</form>
+@section Valdiation{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

@@ -22,6 +22,13 @@ namespace PortalBL.Mapper
             //Form VM To Entity (Create -Edite-Delete) 
 
             CreateMap<DepartmentVM, Department>();
+
+
+            // From Entity To VM (Retreive)
+            CreateMap<Employee, EmployeeVM>();
+
+            // From VM To Entity (Create - Edit - Delete)
+            CreateMap<EmployeeVM, Employee>();
         }
     }
 }

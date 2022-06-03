@@ -17,6 +17,8 @@ namespace PortalDAL.Database
 
         }
         public DbSet<Department> Department { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("Data Source=MOHAMMED\\SQLEXPRESS;database=PortalDB;Integrated Security=True;");

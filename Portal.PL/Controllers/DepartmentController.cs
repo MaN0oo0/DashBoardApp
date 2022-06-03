@@ -9,6 +9,7 @@ namespace PortalPL.Controllers
 {
     public class DepartmentController : Controller
     {
+        
         // private readonly DepartmentRep depart;// ====> tightly coupled 
        private readonly IDepartment depart;//======> Loosly coupled 
         private readonly IMapper mapper;
@@ -17,6 +18,7 @@ namespace PortalPL.Controllers
         {
             this.depart = depart;
             this.mapper = mapper;
+        
         }
 
 
@@ -31,6 +33,7 @@ namespace PortalPL.Controllers
         {
          var data = await depart.GetData();
           var res = mapper.Map<IEnumerable<DepartmentVM>>(data);
+         
             return View(res);
         }
     
@@ -75,8 +78,10 @@ namespace PortalPL.Controllers
         {
             var data= await depart.GetDataById(id);
             var res = mapper.Map<DepartmentVM>(data);
-
+            var List1 = await depart.GetData();
+            ViewBag.data = List1;
             return View(res);
+            
         }
 
         [HttpPost]
