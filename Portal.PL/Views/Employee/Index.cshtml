@@ -3,6 +3,12 @@
     ViewData["Title"] = "Index";
 }
 
+@section Styles{
+      <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+      <link href="~/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"  rel="stylesheet"/>
+      <link href="~/css/Custom.css" rel="stylesheet"/>
+}
+
 
 <h2>Welcom To Employee_Sys</h2>
 @*
@@ -61,11 +67,98 @@
 </form>
 
 <br /> <br />
-<div class="row">
-            
-     <div class="col-lg-10 col-md-6 col-sm-8 col-xs-6">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Welcome To Employee</h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                         <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Hire Date</th>
+            <th>Department</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+                                                           <tbody>
+        @foreach (var item in Model)
+        {
+           
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Salary
+                </td>
+                <td>
+                    @item.HireDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.Department.Name
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 
-<table class="table table-hover table-striped text-center table-bordered font-bold">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+@*@*<div class="row">*@
+            
+     @*<div class="col-lg-10 col-md-6 col-sm-8 col-xs-6">*@
+
+@*<table class="table table-hover table-striped text-center table-bordered font-bold">
     <thead>
         <tr>
             <th>Id</th>
@@ -112,16 +205,30 @@
         }
     </tbody>
 
-</table>
-                </div>
-
-</div>
-
+</table>   </div>*@
+@*
+</div>*@
 
 
-  @section Custom{
-        <link href="~/css/Custom.css" rel="stylesheet"/>
-        <link href="~/css/materialize.css" />
-<link href="~/css/style.min.css" />
-<script src="~/js/pages/index.js"></script>
+
+
+    @section DataTable{
+        <script src="~/plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="~/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script>
+    $(function () {
+                $('.js-basic-example').DataTable({
+                    responsive: true,
+                    paging: true,
+                    pageLength: 2,
+                    bSort: true,
+                    bFilter: true,
+                    bLengthChange: true,
+                    bInfo: false,
+                    lengthMenu: [[2, 3, 25, 50, -1], [2, 3, 25, 50, "All"]],
+                });
+            });
+
+        </script>
     }
+    

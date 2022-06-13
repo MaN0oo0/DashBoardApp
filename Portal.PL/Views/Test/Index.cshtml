@@ -1,0 +1,25 @@
+﻿@using PortalBL.Interface
+@inject IDepartment depart
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@section Styles{
+      <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+}
+
+<select class="form-control">
+    <option>
+        Chose Department
+    </option>
+    @foreach (var item in await depart.GetData())
+    {
+        <option>@item.Name</option>
+    }
+</select>
+
+
+
