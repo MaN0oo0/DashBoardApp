@@ -37,21 +37,21 @@ namespace PortalBL.Reposatroy
         {
             if (filter != null)
                 return
-                    await db.Employee.Where(filter).Include("Department").ToListAsync();
+                    await db.Employee.Where(filter).Include("Department").Include("Distric").ToListAsync();
             else
                 return
-                     await db.Employee.Include("Department").ToListAsync();
+                     await db.Employee.Include("Department").Include("Distric").ToListAsync();
         }
 
         public async Task<Employee> GetByIdAsync(Expression<Func<Employee, bool>> filter)
         {
-            var data = await db.Employee.Where(filter).Include("Department").FirstOrDefaultAsync();
+            var data = await db.Employee.Where(filter).Include("Department").Include("Distric").FirstOrDefaultAsync();
             return data;
         }
 
         public async Task<IEnumerable<Employee>> SearchAsync(Expression<Func<Employee, bool>> filter = null)
         {
-            var data = await db.Employee.Where(filter).Include("Department").ToListAsync();
+            var data = await db.Employee.Where(filter).Include("Department").Include("Distric").ToListAsync();
             return data;
         }
 

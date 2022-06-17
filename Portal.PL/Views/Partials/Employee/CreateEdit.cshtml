@@ -1,5 +1,6 @@
 ﻿@model EmployeeVM
-
+@inject IDepartment Depart
+@inject IDistric distric
 
 
 <label asp-for="Name">Employee Name</label>
@@ -33,8 +34,10 @@
     <br />
 
 
-    <select class="form-control" asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DepartmentList">
-        <option>Choose Department</option>
+   
+    <label asp-for="DepartmentId">Department</label>
+     <select class="form-control" asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DepartmentList">
+  
     </select>
 
     <div class="demo-checkbox">

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using PortalDAL.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PortalBL.Models
 {
@@ -45,5 +46,8 @@ namespace PortalBL.Models
         public DateTime UpdateDate { get; set; }
         public int DepartmentId { get; set; }
         public Department? Department { get; set; }
+        public int DistricId { get; set; }
+        [ForeignKey("DistricId")]
+        public Distric? Distric { get; set; }
     }
 }

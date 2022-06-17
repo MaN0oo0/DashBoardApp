@@ -14,17 +14,22 @@ namespace PortalPL.Controllers
         private readonly IEmployee employee;
         private readonly IMapper mapper;
         private readonly IDepartment department;
+        private readonly ICity city;
+        private readonly IDistric distric;
 
+   
         #endregion
 
 
         #region Ctor
 
-        public EmployeeController(IEmployee employee, IMapper mapper, IDepartment department)
+        public EmployeeController(IEmployee employee, IMapper mapper, IDepartment department, ICity city, IDistric distric)
         {
             this.employee = employee;
             this.mapper = mapper;
             this.department = department;
+            this.city = city;
+            this.distric = distric; 
         }
 
         #endregion
@@ -177,7 +182,7 @@ namespace PortalPL.Controllers
 
             //ModelState.Clear();
             var Dpt = await department.GetData();
-            //ViewBag.DepartmentList = new SelectList(Dpt, "Id", "Name", );
+            ViewBag.DepartmentList = new SelectList(Dpt, "Id", "Name");
             return View();
 
         }
@@ -185,8 +190,24 @@ namespace PortalPL.Controllers
         #endregion
 
 
-        #region Ajax Call
 
+        #region Ajax Call
+        [HttpPost]
+        public async Task<JsonResult> GetCityByIdCountry(int CuntId)
+        {
+            var Data = await city.GetAsync(x => x.CountryId == CuntId);
+            var res =mapper.Map<IEnumerable<CityVM>>(Data);
+            return Json(res);
+        }
+       
+        [HttpPost]
+
+        public async Task<JsonResult> GetDistricByIdCity(int CityId)
+        {
+            var Data = await distric.GetAsync(x => x.CityId == CityId);
+            var res =mapper.Map<IEnumerable<DistricVM>>(Data);
+            return Json(res);
+        }
         #endregion
 
     }

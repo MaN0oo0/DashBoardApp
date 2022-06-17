@@ -29,6 +29,29 @@ namespace PortalBL.Mapper
 
             // From VM To Entity (Create - Edit - Delete)
             CreateMap<EmployeeVM, Employee>();
+            
+            //------------------------Country----------------\\\
+         
+            CreateMap<Country, CountryVM>();
+
+     
+            CreateMap<CountryVM, Country>();
+            //------------------------Country----------------\\\
+
+            //----------------------City-------------------\\\
+            CreateMap<City, CityVM>();
+
+     
+            CreateMap<CityVM, City>();
+            //----------------------City-------------------\\\
+            //----------------------Distrric-------------------\\\
+
+
+            CreateMap<Distric, DistricVM>();
+
+     
+            CreateMap<DistricVM, Distric>();
+            //----------------------Distrric-------------------\\\
         }
     }
 }

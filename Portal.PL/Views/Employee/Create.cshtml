@@ -1,10 +1,16 @@
-﻿@model EmployeeVM
+﻿@inject ICountry Country
+@inject ICity city
+@inject IDistric distric
+
+
+
+@model EmployeeVM
 @{
     ViewData["Title"] = "Create";
 }
-@section Styles{
+@*@section Styles{
       <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-}
+}*@
 
 <div class="block-header">
     <h2 >Create Employee</h2>
@@ -16,6 +22,27 @@
     <div asp-validation-summary="All" class="text-danger font-bold"></div>
 
 @{await Html.RenderPartialAsync("~/Views/Partials/Employee/CreateEdit.cshtml");}
+<br />
+<br />
+<select id="ContryList">
+    <option>Chose Country</option>
+    @foreach (var item in await Country.GetAsync())
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+<br />
+<br />
+<select id="CityList">
+    <option>Chose City</option>
+   
+</select>
+<br />
+<br />
+<select id="DistricList" asp-for="DistricId">
+    <option>Chose Distric</option>
+   
+</select>
 
  <center>
       
@@ -29,5 +56,45 @@
 @section Valdiation{
     <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+$(function(){
+
+
+    $("#ContryList").change(function() {
+
+        var cuntry = $("#ContryList option:selected").val();
+        $("#CityList").empty();
+        $("#CityList").append("<option >Chose City</option>")
+        $.ajax({
+            type:"POST",
+            url:"/Employee/GetCityByIdCountry",
+            data: {CuntId:cuntry},
+            success:function(res)
+            {
+                $.each(res, function(i, e) {
+                    $("#CityList").append("<option value='"+e.Id+"'>"+e.Name+"</option>")
+                });
+            }
+        });
+    });
+    $("#CityList").change(function() {
+
+        var Cityid = $("#CityList option:selected").val();
+        $("#DistricList").empty();
+        $("#DistricList").append("<option >Chose Distric</option>")
+        $.ajax({
+            type:"POST",
+            url:"/Employee/GetDistricByIdCity",
+            data: {CityId:Cityid},
+            success:function(res)
+            {
+                $.each(res, function(i, e) {
+                    $("#DistricList").append("<option value='"+e.Id+"'>"+e.Name+"</option>")
+                });
+            }
+        });
+    });
+});
+    </script>
 }
 

@@ -35,5 +35,10 @@ namespace PortalDAL.Entity
         //[ForeignKey("DepartmentId")]
         public Department? Department { get; set; }
 
+        public int DistricId { get; set; }
+        [ForeignKey("DistricId")]
+        public Distric? Distric { get; set; }
+
+
     }
 }

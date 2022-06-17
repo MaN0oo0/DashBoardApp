@@ -10,12 +10,12 @@
 <form asp-controller="Department" asp-action="Create"  class="form-group">
     <div asp-validation-summary="All" class="text-danger font-bold"></div>
   <div class="form-group">
-    <label asp-for="Name">DepartName:</label>
+    <label asp-for="Name">@SharedLocalizer["DN"]</label>
     <input type="text" class="form-control" asp-for="Name" autocomplete="off" >
     <span asp-validation-for="Name" class="text text-danger font-bold"></span>
   </div>
   <div class="form-group">
-    <label asp-for="Code">Code:</label>
+    <label asp-for="Code">@SharedLocalizer["DC"]</label>
     <input type="text" class="form-control" asp-for="Code" autocomplete="off">
      <span asp-validation-for="Code" class="text text-danger font-bold"  ></span>
   </div>

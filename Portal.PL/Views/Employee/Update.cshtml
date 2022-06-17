@@ -1,4 +1,5 @@
 ﻿@model EmployeeVM
+@inject IDistric distric
 @{
     ViewData["Title"] = "Update";
 }
@@ -24,11 +25,19 @@
 
     @{await Html.RenderPartialAsync("~/Views/Partials/Employee/CreateEdit.cshtml");}
 
-   
+    <label  >DistricName</label>
+    <select class="form-control" asp-for="DistricId">
+        <option>Choose Distric</option>
+         @foreach (var item in await distric.GetAsync())
+         {
+        <option value="@item.Id">@item.Name</option>     
+         }
+    </select>
 
     <center style="margin:60px auto">
-        <input type="submit" value="Update" class="btn btn-primary" />
+        <input type="submit" value="Update" class="btn btn-success" />
         <input type="reset" value="Cancle" class="btn btn-danger" />
+        <a  asp-controller="Employee" asp-action="index" class="btn btn-primary" >Return</a>
     </center>
 
 </form>
