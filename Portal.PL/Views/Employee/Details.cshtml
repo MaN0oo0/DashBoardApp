@@ -1,14 +1,14 @@
 ﻿ @model EmployeeVM
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] =  @SharedLocalizer["Details"];
 }
 @section Styles{
       <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 }
 
 
-<div class="block-header">
-   <h2>Details For @Model.Name</h2>
+<div >
+   <h2 class="badge rounded-pill bg-secondary p-2 mt-2">@SharedLocalizer["DetailsFor"] @Model.Name</h2>
 </div>
 
 
@@ -16,7 +16,7 @@
 
 
     <center style="margin:60px auto">
-    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Return</a>
-    <a asp-controller="Employee" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning">Update</a>
-    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">@SharedLocalizer["Return"]</a>
+    <a asp-controller="Employee" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning">@SharedLocalizer["Update"]</a>
+    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">@SharedLocalizer["Delete"]</a>
     </center>

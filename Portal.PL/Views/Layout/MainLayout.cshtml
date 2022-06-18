@@ -85,7 +85,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="#">ADMINBSB - MATERIAL DESIGN</a>
+                <a class="navbar-brand" href="#">@SharedLocalizer["DASHBOARD"]</a>
           
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -96,11 +96,11 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                     <!-- Notifications -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">notifications</i>
+                            <i class="material-icons">language</i>
                             <span class="label-count">2</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">Langue</li>
+                            <li class="header">Language</li>
                             <li class="body">
                                 <ul class="menu">
                                  @{
@@ -114,7 +114,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                                                   returnUrl = Context.Request.Path + Context.Request.QueryString
                                               })">
                                         <img src="~/images/usa.jpg" width="25" height="15" class="mt-1" />
-                                        <span>@SharedLocalizer["Englis"]</span>
+                                        <span>@SharedLocalizer["English"]</span>
                                     </a>
                                     </li>
                                     }
@@ -232,18 +232,18 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                     <img src="~/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mohamed Ahmed</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@SharedLocalizer["MohamedAhmed"]</div>
                     <div class="email">Mohamed.Ahmed@example.com</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>@SharedLocalizer["Profile"]</a></li>
                             <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>@SharedLocalizer["Followers"]</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>@SharedLocalizer["Sales"]</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>@SharedLocalizer["Likes"]</a></li>
                             <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>@SharedLocalizer["SignOut"]</a></li>
                         </ul>
                     </div>
                 </div>
@@ -252,7 +252,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">@SharedLocalizer["MAINNAVIGATION"]</li>
                     <li class="active">
                         <a asp-controller="Home" asp-action="index">
                             <i class="material-icons">home</i>
@@ -292,7 +292,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; @DateTime.Now.Year <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; @DateTime.Now.Year <a href="https://voluble-semolina-c361db.netlify.app" target="_blank">AdminDashboard - Mohamed Ahmed</a>.
                 </div>
                 
             </div>

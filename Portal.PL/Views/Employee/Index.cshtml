@@ -10,7 +10,7 @@
 }
 
 
-<h2 class="badge rounded-pill bg-secondary p-2 mt-2">Welcom To Employee_Sys</h2>
+<h2 class="badge rounded-pill bg-secondary p-2 mt-2">@SharedLocalizer["WTE"]</h2>
 @*
 @foreach (var item in ViewBag.data)
 {
@@ -43,7 +43,7 @@
 
 
 
-<a asp-controller="Employee" asp-action="Create" class="btn btn-primary m">Create New Employee</a>
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary m">@SharedLocalizer["CNE"]</a>
 
 <br /> <br />
 

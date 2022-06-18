@@ -1,14 +1,14 @@
 ﻿@model EmployeeVM
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] =  @SharedLocalizer["Delete"];
 }
 @section Styles{
       <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 }
 
 
-<div class="block-header">
-   <h2>Are you sure to delete Delete : @Model.Name  </h2>
+<div >
+   <h2 class="badge rounded-pill bg-secondary p-2 mt-2"> @SharedLocalizer["AreyousuretoDelete"] : @Model.Name  </h2>
 </div>
 
 
@@ -24,9 +24,9 @@
 
 
     <center class="mt-5 p-5" style="margin:60px auto">
-        <input type="submit" value="Delete" class="btn btn-danger" />
-            <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Return</a>
-            <a asp-controller="Employee" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning">Update</a>
+        <input type="submit" value=" @SharedLocalizer["Delete"]" class="btn btn-danger" />
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-primary"> @SharedLocalizer["Return"]</a>
+       
     </center>
 
 </form>

@@ -12,7 +12,7 @@ namespace PortalBL.Models
         public int Id { get; set; }
         [Required(ErrorMessage ="Name Requird") , StringLength(50)]
         [MaxLength(50,ErrorMessage = "Max Length 50")]
-        [MinLength(2,ErrorMessage ="min Length 3 ")]
+        [MinLength(2,ErrorMessage ="min Length 3")]
         public string Name { get; set; }
         [Required(ErrorMessage ="Code Requird")]
         [Range(1 , 5000,ErrorMessage ="Range between 1 to 1234")]

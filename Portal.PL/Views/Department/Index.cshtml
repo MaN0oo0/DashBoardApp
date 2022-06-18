@@ -1,13 +1,13 @@
 ﻿@model  IEnumerable<DepartmentVM>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @SharedLocalizer["Departments"];
 }
 
 
-<h2 class="badge rounded-pill bg-secondary p-2 mt-2">Welcom To DepartMent</h2>
+<h2 class="badge rounded-pill bg-secondary p-2 mt-2"> @SharedLocalizer["WTD"]</h2>
 <div class="row">
     
-<a asp-action="Create" asp-controller="Department" class="btn btn-primary text-uppercase m" >Create New Department</a>
+<a asp-action="Create" asp-controller="Department" class="btn btn-primary text-uppercase m" >@SharedLocalizer["CND"]</a>
 </div>
 @*<select>
 @foreach (var item in ViewBag.data)
@@ -35,12 +35,12 @@
   <table class="table tabel-hover table-dark table-striped">
     <thead class="thead-dark">
       <tr >
-        <th >ID</th>
-        <th>Name</th>
-        <th>Code</th>
-        <th>Details</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th >@SharedLocalizer["Id"]</th>
+        <th>@SharedLocalizer["Name"]</th>
+        <th>@SharedLocalizer["DC"]</th>
+        <th>@SharedLocalizer["Details"]</th>
+        <th>@SharedLocalizer["Update"]</th>
+        <th>@SharedLocalizer["Delete"]</th>
 
       </tr>
     </thead>
@@ -53,14 +53,14 @@
         <td>@item.Code</td>
           <td>
 
-            <a asp-action="Details" asp-controller="Department" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+            <a asp-action="Details" asp-controller="Department" asp-route-id="@item.Id" class="btn btn-success">@SharedLocalizer["Details"]</a>
            
         </td>
         <td>
-             <a asp-action="Update" asp-controller="Department" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+             <a asp-action="Update" asp-controller="Department" asp-route-id="@item.Id" class="btn btn-warning">@SharedLocalizer["Update"]</a>
         </td>
         <td>
-                        <a asp-action="Delete" asp-controller="Department" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        <a asp-action="Delete" asp-controller="Department" asp-route-id="@item.Id" class="btn btn-danger">@SharedLocalizer["Delete"]</a>
 
         </td>
         

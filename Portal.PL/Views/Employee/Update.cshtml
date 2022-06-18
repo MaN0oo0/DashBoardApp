@@ -1,15 +1,15 @@
 ﻿@model EmployeeVM
 @inject IDistric distric
 @{
-    ViewData["Title"] = "Update";
+    ViewData["Title"] = SharedLocalizer["Update"];
 }
 @section Styles{
       <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 }
 
 
-<div class="block-header">
-   <h2>Update : @Model.Name </h2>
+<div>
+   <h2 class="badge rounded-pill bg-secondary p-2 mt-2"> @SharedLocalizer["Update"]: @Model.Name </h2>
 </div>
 
 
@@ -25,7 +25,7 @@
 
     @{await Html.RenderPartialAsync("~/Views/Partials/Employee/CreateEdit.cshtml");}
 
-    <label  >DistricName</label>
+    <label  >@SharedLocalizer["ccd"]</label>
     <select class="form-control" asp-for="DistricId">
         <option>Choose Distric</option>
          @foreach (var item in await distric.GetAsync())
@@ -35,9 +35,9 @@
     </select>
 
     <center style="margin:60px auto">
-        <input type="submit" value="Update" class="btn btn-success" />
-        <input type="reset" value="Cancle" class="btn btn-danger" />
-        <a  asp-controller="Employee" asp-action="index" class="btn btn-primary" >Return</a>
+        <input type="submit" value="@SharedLocalizer["Update"]" class="btn btn-success" />
+        <input type="reset" value="@SharedLocalizer["Cancel"]" class="btn btn-danger" />
+        <a  asp-controller="Employee" asp-action="index" class="btn btn-primary" >@SharedLocalizer["Return"]</a>
     </center>
 
 </form>

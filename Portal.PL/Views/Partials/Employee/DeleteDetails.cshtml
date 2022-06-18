@@ -1,36 +1,36 @@
 ﻿@model EmployeeVM
 
 
-    <label asp-for="Name">Name</label>
+    <label asp-for="Name"> @SharedLocalizer["Name"]</label>
     <input type="text" class="form-control" asp-for="Name" readonly />
     <br />
 
-    <label asp-for="Salary">Salary</label>
+    <label asp-for="Salary"> @SharedLocalizer["Salary"]</label>
     <input type="text" class="form-control" asp-for="Salary" readonly />
     <br />
 
-    <label asp-for="HireDate">hire date</label>
+    <label asp-for="HireDate"> @SharedLocalizer["HD"]</label>
     <input type="text" class="form-control" asp-for="HireDate" readonly />
     <br />
 
-        <label asp-for="Email">email</label>
+        <label asp-for="Email"> @SharedLocalizer["Email"]</label>
     <input type="text" class="form-control" asp-for="Email" readonly />
     <br />
 
-        <label asp-for="Address">address</label>
+        <label asp-for="Address"> @SharedLocalizer["Address"]</label>
     <input type="text" class="form-control" asp-for="Address" readonly />
     <br />
 
-        <label asp-for="Notes">Notes</label>
+        <label asp-for="Notes"> @SharedLocalizer["Note"]</label>
         <textarea rows="4" class="form-control" asp-for="Notes" readonly></textarea>
     <br />
 
     
-     <label asp-for="Distric.Name">DistricName</label>
+     <label asp-for="Distric.Name"> @SharedLocalizer["ccd"]</label>
      <input type="text" class="form-control" asp-for="Distric.Name" readonly>
   
     
-    <label asp-for="DepartmentId">Department</label>
+    <label asp-for="DepartmentId"> @SharedLocalizer["Department"]</label>
      <select class="form-control" asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DepartmentList">
   
     </select>

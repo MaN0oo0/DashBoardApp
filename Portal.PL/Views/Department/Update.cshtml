@@ -1,10 +1,10 @@
 ﻿@model DepartmentVM
 @{
-    ViewData["Title"] = "Update";
+    ViewData["Title"] = @SharedLocalizer["Update"];
 }
 
-<div class="block-header">
-    <h2 >Update: @Model.Name </h2>
+<div >
+    <h2 class="badge rounded-pill bg-secondary p-2 mt-2">@SharedLocalizer["Update"]: @Model.Name </h2>
 </div>
 @*@{
     ViewBag.data = Model;
@@ -14,22 +14,22 @@
 <div asp-validation-summary="All" class=" text-danger font-bold"></div>
     <input type="hidden" asp-for="Id" />
   <div class="form-group">
-    <label asp-for="Name">DepartName:</label>
+    <label asp-for="Name">@SharedLocalizer["Name"]</label>
     <input type="text" class="form-control" asp-for="Name" autocomplete="off" >
     <span asp-validation-for="Name" class="text text-danger font-bold"></span>
   </div>
 
 
   <div class="form-group">
-    <label asp-for="Code">Code:</label>
+    <label asp-for="Code">@SharedLocalizer["DC"]</label>
     <input type="text" class="form-control" asp-for="Code" autocomplete="off">
      <span asp-validation-for="Code" class="text text-danger font-bold"  ></span>
   </div>
  <center>
       
-  <button type="submit" class="btn btn-success">Update</button>
-  <button type="reset" class="btn btn-danger">Cancel</button>
-      <a asp-action="index" asp-controller="Department" class="btn btn-primary">Return</a> </center>
+  <button type="submit" class="btn btn-success">@SharedLocalizer["Update"]</button>
+  <button type="reset" class="btn btn-danger">@SharedLocalizer["Cancel"]</button>
+      <a asp-action="index" asp-controller="Department" class="btn btn-primary">@SharedLocalizer["Return"]</a> </center>
 </form>
 @section Valdiation{
     <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
