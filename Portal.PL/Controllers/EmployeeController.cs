@@ -148,51 +148,68 @@ namespace PortalPL.Controllers
                     {
                        
                         x = "";
-                        y= model.Image.FileName;
+                        try
+                        {
+                            y = model.Image.FileName;
+                        }
+                        catch (Exception)
+                        {
+
+                            y = "";
+                        }
+                    
                     }
                     else if (y=="")
                     {
                         y = "";
-                        x= model.CV.FileName;
+                        try
+                        {
+                            x = model.CV.FileName;
+                        }
+                        catch (Exception)
+                        {
+
+                            x = "";
+                        }
                     }
-                    
-                    
-                    
+                    else
+                    {
+                        x = "";
+                        y = "";
+                    }   
                 }
                
                 if (x != "" ||y!="")
                 {
 
+                                if (y!=""&& x!="")
+                                {
+                                    UploadFiles.RemoveFile("Imgs", model.ImageName);
+                                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
 
-               
-                if (y!=""&& x!="")
-                {
-                    UploadFiles.RemoveFile("Imgs", model.ImageName);
-                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+                                    UploadFiles.RemoveFile("Docs", model.CvName);
 
-                    UploadFiles.RemoveFile("Docs", model.CvName);
+                                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                                    var data = mapper.Map<Employee>(model);
+                                    await employee.UpdateAsync(data);
+                                }
+                                else if (x!="" )
+                                {
+                                    UploadFiles.RemoveFile("Docs", model.CvName);
 
-                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
-                    var data = mapper.Map<Employee>(model);
-                    await employee.UpdateAsync(data);
-                }
-                else if (x!="" )
-                {
-                    UploadFiles.RemoveFile("Docs", model.CvName);
+                                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                                    var data = mapper.Map<Employee>(model);
+                                    await employee.UpdateAsync(data);
+                                }
 
-                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
-                    var data = mapper.Map<Employee>(model);
-                    await employee.UpdateAsync(data);
-                }
+                                else if (y!="")
+                                {
+                                    UploadFiles.RemoveFile("Imgs",model.ImageName);
+                                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+                                    var data = mapper.Map<Employee>(model);
+                                    await employee.UpdateAsync(data);
 
-                else if (y!="")
-                {
-                    UploadFiles.RemoveFile("Imgs",model.ImageName);
-                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
-                    var data = mapper.Map<Employee>(model);
-                    await employee.UpdateAsync(data);
-
-                 }
+                                 }
                 
                 }
 
@@ -201,18 +218,7 @@ namespace PortalPL.Controllers
                     var data = mapper.Map<Employee>(model);
                     await employee.UpdateAsync(data);
                 }
-
-            
-           
                     return RedirectToAction("Index");
-
-
-
-                
-
-
-
-
 
             }
             catch (Exception ex)
@@ -222,9 +228,6 @@ namespace PortalPL.Controllers
 
             //ModelState.Clear();
          
-          
-           
-
             var Dpt = await department.GetData();
             ViewBag.DepartmentList = new SelectList(Dpt, "Id", "Name", model.DepartmentId);
 
