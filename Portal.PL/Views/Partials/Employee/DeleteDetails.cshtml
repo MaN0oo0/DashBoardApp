@@ -1,37 +1,47 @@
 ﻿@model EmployeeVM
 
 
-    <label asp-for="Name"> @SharedLocalizer["Name"]</label>
-    <input type="text" class="form-control" asp-for="Name" readonly />
-    <br />
 
-    <label asp-for="Salary"> @SharedLocalizer["Salary"]</label>
-    <input type="text" class="form-control" asp-for="Salary" readonly />
-    <br />
+<label asp-for="Name"> @SharedLocalizer["Name"]</label>
+<input type="text" class="form-control" asp-for="Name" readonly />
+<br />
+<br />
 
-    <label asp-for="HireDate"> @SharedLocalizer["HD"]</label>
-    <input type="text" class="form-control" asp-for="HireDate" readonly />
-    <br />
+<label asp-for="Image"> image</label>
+<img src="~/Files/Imgs/@Model.ImageName" class="form-control" style="width:300px; height:150px"/>
+<br />
+<br />
 
-        <label asp-for="Email"> @SharedLocalizer["Email"]</label>
-    <input type="text" class="form-control" asp-for="Email" readonly />
-    <br />
+<label asp-for="CV" > CV</label><br />
+<a href="~/Files/Docs/@Model.CvName"  download="download" >Download CV</a>
+<br />
 
-        <label asp-for="Address"> @SharedLocalizer["Address"]</label>
-    <input type="text" class="form-control" asp-for="Address" readonly />
-    <br />
+<label asp-for="Salary"> @SharedLocalizer["Salary"]</label>
+<input type="text" class="form-control" asp-for="Salary" readonly />
+<br />
 
-        <label asp-for="Notes"> @SharedLocalizer["Note"]</label>
-        <textarea rows="4" class="form-control" asp-for="Notes" readonly></textarea>
-    <br />
+<label asp-for="HireDate"> @SharedLocalizer["HD"]</label>
+<input type="text" class="form-control" asp-for="HireDate" readonly />
+<br />
 
-    
-     <label asp-for="Distric.Name"> @SharedLocalizer["ccd"]</label>
-     <input type="text" class="form-control" asp-for="Distric.Name" readonly>
-  
-    
-    <label asp-for="DepartmentId"> @SharedLocalizer["Department"]</label>
-     <select class="form-control" asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DepartmentList">
-  
-    </select>
-    <br />
+<label asp-for="Email"> @SharedLocalizer["Email"]</label>
+<input type="text" class="form-control" asp-for="Email" readonly />
+<br />
+
+<label asp-for="Address"> @SharedLocalizer["Address"]</label>
+<input type="text" class="form-control" asp-for="Address" readonly />
+<br />
+
+<label asp-for="Notes"> @SharedLocalizer["Note"]</label>
+<textarea rows="4" class="form-control" asp-for="Notes" readonly></textarea>
+<br />
+
+
+<label asp-for="Distric.Name"> @SharedLocalizer["ccd"]</label>
+<input type="text" class="form-control" asp-for="Distric.Name" readonly>
+
+
+<label asp-for="DepartmentId"> @SharedLocalizer["Department"]</label>
+<select class="form-control" asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DepartmentList">
+</select>
+<br />

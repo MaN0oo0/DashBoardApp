@@ -38,7 +38,9 @@ namespace PortalDAL.Entity
         public int DistricId { get; set; }
         [ForeignKey("DistricId")]
         public Distric? Distric { get; set; }
-
+        public string? ImageName { get; set; }
+        public string? CvName { get; set; }
+        public bool ImageIsDeleted { get; set; }
 
     }
 }

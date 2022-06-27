@@ -15,6 +15,6 @@ namespace PortalBL.Interface
         Task<Employee> GetByIdAsync(Expression<Func<Employee, bool>> filter);
         Task CreateAsync(Employee obj);
         Task UpdateAsync(Employee obj);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Employee obj);
     }
 }

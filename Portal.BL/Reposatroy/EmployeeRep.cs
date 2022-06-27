@@ -25,9 +25,9 @@ namespace PortalBL.Reposatroy
             await db.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Employee obj)
         {
-            var OldData = db.Employee.Find(id);
+            var OldData = db.Employee.Find(obj.Id);
             OldData.IsDeleted = true;
             OldData.DeleteDate = DateTime.Now;
             await db.SaveChangesAsync();
@@ -60,8 +60,18 @@ namespace PortalBL.Reposatroy
             obj.UpdateDate = DateTime.Now;
             obj.IsUpdated = true;
 
+            
+            
+
             db.Entry(obj).State = EntityState.Modified;
-            await db.SaveChangesAsync();
+              
+        
+         
+                await db.SaveChangesAsync();
+            
+
+          
         }
+       
     }
 }

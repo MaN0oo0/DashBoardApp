@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PortalBL.Helpers;
 using PortalBL.Interface;
 using PortalBL.Models;
 using PortalDAL.Entity;
+using System.IO;
 
 namespace PortalPL.Controllers
 {
@@ -59,7 +61,7 @@ namespace PortalPL.Controllers
             else
             {
                 // Without Search
-                var data = await employee.GetAsync(x => x.IsActive == true && x.IsDeleted == false);
+                var data = await employee.GetAsync(x => x.IsActive == true && x.IsDeleted == false &&x.ImageIsDeleted==false);
                 var result = mapper.Map<IEnumerable<EmployeeVM>>(data);
                 return View(result);
             }
@@ -92,6 +94,9 @@ namespace PortalPL.Controllers
                 if (ModelState.IsValid)
                 {
 
+                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+
                     var data = mapper.Map<Employee>(model);
                     await employee.CreateAsync(data);
                     return RedirectToAction("Index");
@@ -118,7 +123,8 @@ namespace PortalPL.Controllers
             var result = mapper.Map<EmployeeVM>(data);
             var Dpt = await department.GetData();
             ViewBag.DepartmentList = new SelectList(Dpt, "Id", "Name", data.DepartmentId);
-
+           
+            ViewBag.emp= await employee.GetAsync();
             return View(result);
         }
 
@@ -128,12 +134,85 @@ namespace PortalPL.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                var x = "";
+                var y = "";
+                try
+                {
+                   x = model.CV.FileName;
+                    y = model.Image.FileName;
+                }
+                catch (Exception ex)
+                {
+                  
+                   if(x=="")
+                    {
+                       
+                        x = "";
+                        y= model.Image.FileName;
+                    }
+                    else if (y=="")
+                    {
+                        y = "";
+                        x= model.CV.FileName;
+                    }
+                    
+                    
+                    
+                }
+               
+                if (x != "" ||y!="")
+                {
+
+
+               
+                if (y!=""&& x!="")
+                {
+                    UploadFiles.RemoveFile("Imgs", model.ImageName);
+                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+
+                    UploadFiles.RemoveFile("Docs", model.CvName);
+
+                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                    var data = mapper.Map<Employee>(model);
+                    await employee.UpdateAsync(data);
+                }
+                else if (x!="" )
+                {
+                    UploadFiles.RemoveFile("Docs", model.CvName);
+
+                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                    var data = mapper.Map<Employee>(model);
+                    await employee.UpdateAsync(data);
+                }
+
+                else if (y!="")
+                {
+                    UploadFiles.RemoveFile("Imgs",model.ImageName);
+                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+                    var data = mapper.Map<Employee>(model);
+                    await employee.UpdateAsync(data);
+
+                 }
+                
+                }
+
+                else if(model.ImageName!=""||model.CvName!="")
                 {
                     var data = mapper.Map<Employee>(model);
                     await employee.UpdateAsync(data);
-                    return RedirectToAction("Index");
                 }
+
+            
+           
+                    return RedirectToAction("Index");
+
+
+
+                
+
+
+
+
 
             }
             catch (Exception ex)
@@ -142,8 +221,14 @@ namespace PortalPL.Controllers
             }
 
             //ModelState.Clear();
+         
+          
+           
+
             var Dpt = await department.GetData();
             ViewBag.DepartmentList = new SelectList(Dpt, "Id", "Name", model.DepartmentId);
+
+          
 
             return View(model);
 
@@ -164,15 +249,18 @@ namespace PortalPL.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public async Task<IActionResult> ConfirmDelete(int id)
+        public async Task<IActionResult> ConfirmDelete(EmployeeVM model)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    await employee.DeleteAsync(id);
+                
+                     //To Delete Files From Server
+                    //UploadFiles.RemoveFile("Docs", model.CvName);
+                    //UploadFiles.RemoveFile("Imgs", model.ImageName);
+                    var res = mapper.Map<Employee>(model);
+                    await employee.DeleteAsync(res);
                     return RedirectToAction("Index");
-                }
+                
 
             }
             catch (Exception ex)
@@ -181,6 +269,7 @@ namespace PortalPL.Controllers
             }
 
             //ModelState.Clear();
+           
             var Dpt = await department.GetData();
             ViewBag.DepartmentList = new SelectList(Dpt, "Id", "Name");
             return View();

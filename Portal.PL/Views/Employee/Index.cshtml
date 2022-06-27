@@ -100,6 +100,8 @@
                                                                         <th>@SharedLocalizer["Id"]</th>
                                                                         <th>@SharedLocalizer["Name"]</th>
                                                                         <th>@SharedLocalizer["Salary"]</th>
+                                                                        <th>Image</th>
+                                                                        <th>CV</th>
                                                                         <th>@SharedLocalizer["HD"]</th>
                                                                         <th>@SharedLocalizer["District"]</th>
                                                                         <th>@SharedLocalizer["Department"]</th>
@@ -125,6 +127,12 @@
                                                         @item.Salary
                                                     </td>
                                                     <td>
+                                                        <img src="~/Files/Imgs/@item.ImageName" width="100" hight="120" />
+                                                    </td>
+                                                    <td>
+                                                        <a href="~/Files/Docs/@item.CvName" download="downlod" >Download CV</a>
+                                                    </td>
+                                                    <td>
                                                         @item.HireDate.ToShortDateString()
                                                     </td>
                                                     <td>
@@ -132,7 +140,7 @@
                                                     </td>
                                                     <td>
                                                         @item.Department.Name
-                                                    </td>   
+                                                    </td>
                                                     <td>
                                                         <a asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">@SharedLocalizer["Details"]</a>
                                                     </td>

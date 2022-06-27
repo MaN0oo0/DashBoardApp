@@ -14,30 +14,103 @@
 
 
 
-<form asp-controller="Employee" asp-action="Update" class="form-group">
+<form asp-controller="Employee" asp-action="Update" class="form-group" enctype="multipart/form-data">
 
 
     <div asp-validation-summary="All" class="text-danger font-bold"></div>
 
     <input type="hidden" asp-for="Id" />
     <input type="hidden" asp-for="CreationDate" />
+    <input type="hidden" asp-for="@Model.ImageName" />
+    <input type="hidden" asp-for="@Model.CvName" />
 
 
     @{await Html.RenderPartialAsync("~/Views/Partials/Employee/CreateEdit.cshtml");}
+    <br />
 
-    <label  >@SharedLocalizer["ccd"]</label>
+
+
+
+    <img src="~/Files/Imgs/@Model.ImageName" class="form-control" style="width:400px; height:280px" id="imf" />
+
+
+
+
+    <div class="container " style="display:none ;margin:20px auto;" id="xx">
+        <label asp-for="Image"> image</label>
+        <input type="file" asp-for="Image" multiple value="" />
+
+
+        <span asp-validation-for="Image" class="text-danger font-bold"></span>
+
+    </div>
+
+
+    <br />
+    <br />
+    <input type="button" class="btn btn-success" id="btnShow" value="Upload Photo" />
+    <br />
+    <br />
+    <label asp-for="CV"> CV</label><br />
+
+
+    <a href="~/Files/Docs/@Model.CvName" download="download" id="CVV">Download CV</a>  <input type="button" class="btn btn-success" id="btncv" value="Upload CV" />
+
+    <div class="container mb-3" id="cvv" style="display:none">
+
+        <input type="file" class="form-control" asp-for="CV" multiple value="" />
+        <span asp-validation-for="CV" class="text-danger font-bold"></span>
+    </div>
+    <br />
+    <br />
+
+
+    <script>
+
+        var y = document.getElementById("btnShow");
+        y.addEventListener("click", function () {
+            var dd = document.getElementById("imf");
+            dd.style.display = "none";
+            dd.remove();
+            var x = document.getElementById("xx");
+            x.style.display = "block";
+
+
+        });
+        ///-------------\\\\
+
+        var w = document.getElementById("btncv");
+        w.addEventListener("click", function () {
+            var MM = document.getElementById("CVV");
+            MM.style.display = "none";
+            MM.remove();
+            var f = document.getElementById("cvv");
+            f.style.display = "block";
+
+        });
+    </script>
+
+    <br />
+    <br />
+
+
+
+
+
+    <label>@SharedLocalizer["ccd"]</label>
     <select class="form-control" asp-for="DistricId">
         <option>Choose Distric</option>
-         @foreach (var item in await distric.GetAsync())
-         {
-        <option value="@item.Id">@item.Name</option>     
-         }
+        @foreach (var item in await distric.GetAsync())
+        {
+            <option value="@item.Id">@item.Name</option>
+
+        }
     </select>
 
     <center style="margin:60px auto">
         <input type="submit" value="@SharedLocalizer["Update"]" class="btn btn-success" />
         <input type="reset" value="@SharedLocalizer["Cancel"]" class="btn btn-danger" />
-        <a  asp-controller="Employee" asp-action="index" class="btn btn-primary" >@SharedLocalizer["Return"]</a>
+        <a asp-controller="Employee" asp-action="index" class="btn btn-primary">@SharedLocalizer["Return"]</a>
     </center>
 
 </form>
@@ -46,3 +119,5 @@
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
 
+
+    

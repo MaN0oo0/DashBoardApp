@@ -124,6 +124,9 @@ namespace PortalDAL.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CvName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
@@ -138,6 +141,12 @@ namespace PortalDAL.Migrations
 
                     b.Property<DateTime>("HireDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("ImageIsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

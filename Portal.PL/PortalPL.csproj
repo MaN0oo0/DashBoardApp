@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Portal.BL\PortalBL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\Docs\" />
+  </ItemGroup>
+
 </Project>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using PortalDAL.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace PortalBL.Models
 {
@@ -49,5 +50,17 @@ namespace PortalBL.Models
         public int DistricId { get; set; }
         [ForeignKey("DistricId")]
         public Distric? Distric { get; set; }
+        
+        public string? ImageName { get; set; }
+
+        public string? CvName { get; set; }
+       
+        [Required(ErrorMessage = "Image is Required")]
+        public IFormFile Image { get; set; }
+        [Required(ErrorMessage = "CV is Required")]
+        public IFormFile CV { get; set; }
+        public bool ImageIsDeleted { get; set; }
+
+
     }
 }
