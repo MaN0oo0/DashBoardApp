@@ -233,7 +233,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@SharedLocalizer["MohamedAhmed"]</div>
-                    <div class="email">Mohamed.Ahmed@example.com</div>
+                    <div class="e">Mohamed.Ahmed@example.com</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -259,8 +259,8 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                             <span>@SharedLocalizer["Home"]</span>
                         </a>
                     </li>
-             
-                    
+
+
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">widgets</i>
@@ -271,12 +271,12 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                                 <a asp-controller="Department" asp-action="index" class="menu-toggle">
                                     <span>@SharedLocalizer["DepartmentCard"]</span>
                                 </a>
-                               
+
                             </li>
 
-                            
-                </ul>
-                 <li>
+
+                        </ul>
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">bolt</i>
                             <span>@SharedLocalizer["Employee"]</span>
@@ -287,7 +287,24 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                             </li>
                         </ul>
                     </li>
-            </div>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">bolt</i>
+                            <span>Mail</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a asp-controller="Mail" asp-action="SendMail">Send Mail</a>
+                            </li>
+                            <li>
+                                <a href="#" >Inbox</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+
+                       
+</div>
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">
@@ -401,7 +418,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                                 </div>
                             </li>
                             <li>
-                                <span>Email Redirect</span>
+                                <span>E Redirect</span>
                                 <div class="switch">
                                     <label><input type="checkbox"><span class="lever"></span></label>
                                 </div>

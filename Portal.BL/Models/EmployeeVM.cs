@@ -56,9 +56,9 @@ namespace PortalBL.Models
         public string? CvName { get; set; }
        
         [Required(ErrorMessage = "Image is Required")]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
         [Required(ErrorMessage = "CV is Required")]
-        public IFormFile CV { get; set; }
+        public IFormFile? CV { get; set; }
         public bool ImageIsDeleted { get; set; }
 
 

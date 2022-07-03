@@ -134,91 +134,125 @@ namespace PortalPL.Controllers
         {
             try
             {
-                var x = "";
-                var y = "";
-                try
+
+
+                if (model.CV!=null && model.Image !=null)
                 {
-                   x = model.CV.FileName;
-                    y = model.Image.FileName;
-                }
-                catch (Exception ex)
-                {
-                  
-                   if(x=="")
-                    {
-                       
-                        x = "";
-                        try
-                        {
-                            y = model.Image.FileName;
-                        }
-                        catch (Exception)
-                        {
+                    UploadFiles.RemoveFile("Imgs", model.ImageName);
+                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
 
-                            y = "";
-                        }
-                    
-                    }
-                    else if (y=="")
-                    {
-                        y = "";
-                        try
-                        {
-                            x = model.CV.FileName;
-                        }
-                        catch (Exception)
-                        {
+                    UploadFiles.RemoveFile("Docs", model.CvName);
 
-                            x = "";
-                        }
-                    }
-                    else
-                    {
-                        x = "";
-                        y = "";
-                    }   
-                }
-               
-                if (x != "" ||y!="")
-                {
-
-                                if (y!=""&& x!="")
-                                {
-                                    UploadFiles.RemoveFile("Imgs", model.ImageName);
-                                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
-
-                                    UploadFiles.RemoveFile("Docs", model.CvName);
-
-                                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
-                                    var data = mapper.Map<Employee>(model);
-                                    await employee.UpdateAsync(data);
-                                }
-                                else if (x!="" )
-                                {
-                                    UploadFiles.RemoveFile("Docs", model.CvName);
-
-                                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
-                                    var data = mapper.Map<Employee>(model);
-                                    await employee.UpdateAsync(data);
-                                }
-
-                                else if (y!="")
-                                {
-                                    UploadFiles.RemoveFile("Imgs",model.ImageName);
-                                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
-                                    var data = mapper.Map<Employee>(model);
-                                    await employee.UpdateAsync(data);
-
-                                 }
-                
-                }
-
-                else if(model.ImageName!=""||model.CvName!="")
-                {
+                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
                     var data = mapper.Map<Employee>(model);
                     await employee.UpdateAsync(data);
                 }
-                    return RedirectToAction("Index");
+                else if (model.CV != null)
+                {
+                    UploadFiles.RemoveFile("Docs", model.CvName);
+
+                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                    var data = mapper.Map<Employee>(model);
+                    await employee.UpdateAsync(data);
+
+                }
+                else if (model.Image!=null)
+                {
+                    UploadFiles.RemoveFile("Imgs", model.ImageName);
+                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+                    var data = mapper.Map<Employee>(model);
+                    await employee.UpdateAsync(data);
+
+
+                }
+                else
+                {
+                    var data = mapper.Map<Employee>(model);
+                        await employee.UpdateAsync(data);
+                }
+                //var x = "";
+                //var y = "";
+                //try
+                //{
+                //   x = model.CV.FileName;
+                //    y = model.Image.FileName;
+                //}
+                //catch (Exception ex)
+                //{
+                //   if(x=="")
+                //    {
+                //        x = "";
+                //        try
+                //        {
+                //            y = model.Image.FileName;
+                //        }
+                //        catch (Exception)
+                //        {
+
+                //            y = "";
+                //        }
+
+                //    }
+                //    else if (y=="")
+                //    {
+                //        y = "";
+                //        try
+                //        {
+                //            x = model.CV.FileName;
+                //        }
+                //        catch (Exception)
+                //        {
+
+                //            x = "";
+                //        }
+                //    }
+                //    else
+                //    {
+                //        x = "";
+                //        y = "";
+                //    }   
+                //}
+
+                //if (x != "" ||y!="")
+                //{
+
+                //                if (y!=""&& x!="")
+                //                {
+                //                    UploadFiles.RemoveFile("Imgs", model.ImageName);
+                //                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+
+                //                    UploadFiles.RemoveFile("Docs", model.CvName);
+
+                //                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                //                    var data = mapper.Map<Employee>(model);
+                //                    await employee.UpdateAsync(data);
+                //                }
+                //                else if (x!="" )
+                //                {
+                //                    UploadFiles.RemoveFile("Docs", model.CvName);
+
+                //                    model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);
+                //                    var data = mapper.Map<Employee>(model);
+                //                    await employee.UpdateAsync(data);
+                //                }
+
+                //                else if (y!="")
+                //                {
+                //                    UploadFiles.RemoveFile("Imgs",model.ImageName);
+                //                    model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
+                //                    var data = mapper.Map<Employee>(model);
+                //                    await employee.UpdateAsync(data);
+
+                //                 }
+
+                //}
+
+                //else if(model.ImageName!=""||model.CvName!="")
+                //{
+                //    var data = mapper.Map<Employee>(model);
+                //    await employee.UpdateAsync(data);
+                //}
+                return RedirectToAction("Index");
 
             }
             catch (Exception ex)

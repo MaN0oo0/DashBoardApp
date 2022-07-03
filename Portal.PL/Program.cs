@@ -1,8 +1,10 @@
+
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 using Portal.PL.Languages;
+using PortalBL.Helpers;
 using PortalBL.Interface;
 using PortalBL.Mapper;
 using PortalBL.Reposatroy;
@@ -20,6 +22,7 @@ builder.Services.AddControllersWithViews().AddViewLocalization(LanguageViewLocat
 }).AddNewtonsoftJson(opt => {
     opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
 });
+
 
 // Enhancement ConnectionString
 var connectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
