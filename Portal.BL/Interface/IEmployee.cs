@@ -13,7 +13,7 @@ namespace PortalBL.Interface
         Task<IEnumerable<Employee>> GetAsync(Expression<Func<Employee, bool>> filter = null);
         Task<IEnumerable<Employee>> SearchAsync(Expression<Func<Employee, bool>> filter = null);
         Task<Employee> GetByIdAsync(Expression<Func<Employee, bool>> filter);
-        Task CreateAsync(Employee obj);
+        Task <Employee> CreateAsync(Employee obj);
         Task UpdateAsync(Employee obj);
         Task DeleteAsync(Employee obj);
     }

@@ -18,11 +18,13 @@ namespace PortalBL.Reposatroy
         {
             this.db = db;
         }
-        public async Task CreateAsync(Employee obj)
+        public async Task <Employee> CreateAsync(Employee obj)
         {
             obj.CreationDate = DateTime.Now;
             await db.Employee.AddAsync(obj);
             await db.SaveChangesAsync();
+
+            return  await db.Employee.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
         }
 
         public async Task DeleteAsync(Employee obj)

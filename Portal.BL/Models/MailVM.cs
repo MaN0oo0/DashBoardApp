@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace PortalBL.Models
 {
@@ -21,7 +22,7 @@ namespace PortalBL.Models
         [Required(ErrorMessage ="Subject is Required")]
             public string Subject { get; set; }
             public string Message { get; set; }
-           // public List<IFormFile> Attachments { get; set; }
+           // public IFormFile? Attachments { get; set; }
      
     }
 }

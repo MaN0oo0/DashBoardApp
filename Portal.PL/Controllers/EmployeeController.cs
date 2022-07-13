@@ -35,7 +35,7 @@ namespace PortalPL.Controllers
         }
 
         #endregion
-
+        
 
         #region Actions
 
@@ -134,13 +134,13 @@ namespace PortalPL.Controllers
         {
             try
             {
-
+                
 
                 if (model.CV!=null && model.Image !=null)
                 {
                     UploadFiles.RemoveFile("Imgs", model.ImageName);
                     model.ImageName = UploadFiles.UploaderFiles("Imgs", model.Image);
-
+                    
                     UploadFiles.RemoveFile("Docs", model.CvName);
 
                     model.CvName = UploadFiles.UploaderFiles("Docs", model.CV);

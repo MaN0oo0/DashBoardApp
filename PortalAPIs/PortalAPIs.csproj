@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.MailKitMailer" Version="1.2.2" />
-    <PackageReference Include="Microsoft.IdentityModel.Logging" Version="6.20.0" />
-    <PackageReference Include="MimeKit" Version="3.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
