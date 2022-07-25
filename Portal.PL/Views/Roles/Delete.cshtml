@@ -1,0 +1,40 @@
+﻿@model IdentityRole
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@section Styles{
+<link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+}
+
+
+<div>
+    <h2 class="badge rounded-pill bg-secondary p-2 mt-2"> @SharedLocalizer["AreyousuretoDelete"] : @Model.Name  </h2>
+</div>
+
+
+
+<form asp-controller="Roles" asp-action="Delete" class="form-group">
+
+
+
+    <input type="hidden" asp-for="Id" />
+
+    <input type="hidden" asp-for="ConcurrencyStamp" />
+
+
+    <label asp-for="Name">@SharedLocalizer["Name"]</label>
+    <input type="text" asp-for="Name" class="form-control"/>
+    <span asp-validation-for="Name"></span>
+
+
+
+
+
+    <center class="mt-5 p-5" style="margin:60px auto">
+        <input type="submit" value=" @SharedLocalizer["Delete"]" class="btn btn-danger" />
+        <a asp-controller="Users" asp-action="Index" class="btn btn-primary"> @SharedLocalizer["Return"]</a>
+
+    </center>
+
+</form>

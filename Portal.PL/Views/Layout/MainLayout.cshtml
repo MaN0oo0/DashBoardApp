@@ -1,7 +1,11 @@
 ﻿
 @{
-var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+    var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
 }
+
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> signInManager
 
 
 <!DOCTYPE html>
@@ -22,10 +26,10 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
     <!-- Bootstrap Core Css -->
     <link href="~/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-  @RenderSection("Styles",required:false)
+    @RenderSection("Styles", required: false)
     <!-- Waves Effect Css -->
     <link href="~/plugins/node-waves/waves.css" rel="stylesheet" />
-    
+
     <!-- Animation Css -->
     <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
     <!-- Morris Chart Css-->
@@ -33,22 +37,23 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
 
     <!-- Custom Css -->
     <link href="~/css/style.css" rel="stylesheet">
-    
+
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="~/css/themes/all-themes.css" rel="stylesheet" />
     @{
-        if(Culture=="ar-EG"){
-            <link  href="~/css/Ar.css" rel="stylesheet"/>
+        if (Culture == "ar-EG")
+        {
+            <link href="~/css/Ar.css" rel="stylesheet" />
         }
         else
         {
-                <link  href="~/css/En.css" rel="stylesheet"/>
+            <link href="~/css/En.css" rel="stylesheet" />
         }
     }
 </head>
 <body class="theme-red">
-       <!-- Page Loader -->
+    <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">
@@ -86,7 +91,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="#">@SharedLocalizer["DASHBOARD"]</a>
-          
+
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -103,39 +108,40 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                             <li class="header">Language</li>
                             <li class="body">
                                 <ul class="menu">
-                                 @{
+                                    @{
                                         if (Culture == "ar-EG")
 
-                                    {
+                                        {
                                             <li>
-                                            <a class="dropdown-item d-flex justify-content-between"
-                                       href="@Url.Action("SetLanguage", "Langaue", new {
+                                                <a class="dropdown-item d-flex justify-content-between"
+                                                   href="@Url.Action("SetLanguage", "Langaue", new {
                                                   culture = "en-US",
                                                   returnUrl = Context.Request.Path + Context.Request.QueryString
                                               })">
-                                        <img src="~/images/usa.jpg" width="25" height="15" class="mt-1" />
-                                        <span>@SharedLocalizer["English"]</span>
-                                    </a>
-                                    </li>
-                                    }
-                               else{
-                                             <li>
-                                    <a class="dropdown-item d-flex justify-content-between"
-                                       href="@Url.Action("SetLanguage", "Langaue", new {
+                                                    <img src="~/images/usa.jpg" width="25" height="15" class="mt-1" />
+                                                    <span>@SharedLocalizer["English"]</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a class="dropdown-item d-flex justify-content-between"
+                                                   href="@Url.Action("SetLanguage", "Langaue", new {
                                                   culture = "ar-EG",
                                                   returnUrl = Context.Request.Path + Context.Request.QueryString
                                               })">
-                                        <img src="~/images/Egypt.jpg" width="25" height="15" class="mt-1" />
-                                        <span>@SharedLocalizer["Arbic"]</span>
-                                    </a>
+                                                    <img src="~/images/Egypt.jpg" width="25" height="15" class="mt-1" />
+                                                    <span>@SharedLocalizer["Arbic"]</span>
+                                                </a>
 
-                                       </li>
+                                            </li>
+                                        }
                                     }
-                                   } 
-                                   
+
                                 </ul>
                             </li>
-                         
+
                         </ul>
                     </li>
                     <!-- #END# Notifications -->
@@ -223,7 +229,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
         </div>
     </nav>
     <!-- #Top Bar -->
-    <section> 
+    <section>
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
@@ -232,20 +238,46 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                     <img src="~/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@SharedLocalizer["MohamedAhmed"]</div>
-                    <div class="e">Mohamed.Ahmed@example.com</div>
+
+
+
+                    @*@if (signInManager.IsSignedIn(User))
+                    {
+                        <div class="email">@User.Identity.E</div>
+                    }*@
+
+
+
+                    @if (signInManager.IsSignedIn(User))
+                    {
+
+                   
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</div>
+                    }
+                  @*  <div class="e">@User.</div>*@
+                        <form asp-controller="Account" asp-action="LogOut">
                     <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>@SharedLocalizer["Profile"]</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>@SharedLocalizer["Followers"]</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>@SharedLocalizer["Sales"]</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>@SharedLocalizer["Likes"]</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>@SharedLocalizer["SignOut"]</a></li>
-                        </ul>
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>@SharedLocalizer["Profile"]</a></li>
+                                <li role="seperator" class="divider"></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">group</i>@SharedLocalizer["Followers"]</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>@SharedLocalizer["Sales"]</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>@SharedLocalizer["Likes"]</a></li>
+                                <li role="seperator" class="divider"></li>
+
+
+                               @* <li>  <input type="submit" class="btn btn-primary w-100" value="@SharedLocalizer["SignOut"]" /></li>*@
+
+
+
+                                  <li><button href="javascript:void(0);" type="submit" class="btn btn-primary p-5  "><i class="material-icons ">input</i>&nbsp; SignOut</button></li>
+
+
+
+                            </ul>
                     </div>
+                        </form>
                 </div>
             </div>
             <!-- #User Info -->
@@ -297,21 +329,45 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                                 <a asp-controller="Mail" asp-action="SendMail">Send Mail</a>
                             </li>
                             <li>
-                                <a href="#" >Inbox</a>
+                                <a href="#">Inbox</a>
                             </li>
                         </ul>
-                        </li>
-                    </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">bolt</i>
+                            <span>Users</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a asp-controller="Users" asp-action="index">Users Board</a>
+                            </li>
 
-                       
-</div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">bolt</i>
+                            <span>Roles</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a asp-controller="Roles" asp-action="index">Roles Board</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
                     &copy; @DateTime.Now.Year <a href="https://voluble-semolina-c361db.netlify.app" target="_blank">AdminDashboard - Mohamed Ahmed</a>.
                 </div>
-                
+
             </div>
             <!-- #Footer -->
         </aside>
@@ -433,7 +489,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                                 </div>
                             </li>
                             <li>
-                                
+
                                 <span>Auto Updates</span>
                                 <div class="switch">
                                     <label><input type="checkbox" checked><span class="lever"></span></label>
@@ -462,18 +518,18 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
         <!-- #END# Right Sidebar -->
     </section>
 
-     <section class="content">
-    <div class="container-fluid">
-        @RenderBody()
-                 </div>
-                 </section>
+    <section class="content">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </section>
 
 
 
-        <!-- Jquery Core Js -->
+    <!-- Jquery Core Js -->
     <script src="~/plugins/jquery/jquery.min.js"></script>
 
-    @RenderSection("Valdiation",required:false)
+    @RenderSection("Valdiation", required: false)
 
     <!-- Bootstrap Core Js -->
     <script src="~/plugins/bootstrap/js/bootstrap.js"></script>
@@ -481,7 +537,7 @@ var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
     <!-- Select Plugin Js -->
     <script src="~/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-    @RenderSection("DataTable",required:false)
+    @RenderSection("DataTable", required: false)
     <!-- Slimscroll Plugin Js -->
     <script src="~/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 

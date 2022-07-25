@@ -21,7 +21,7 @@ namespace PortalBL.Models
         public string Name { get; set; }
         [Required(ErrorMessage ="Subject is Required")]
             public string Subject { get; set; }
-            public string Message { get; set; }
+            public string? Message { get; set; }
            // public IFormFile? Attachments { get; set; }
      
     }

@@ -1,0 +1,45 @@
+﻿@model IdentityRole
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h2>Update @Model.Name</h2>
+
+
+<form asp-controller="Roles" asp-action="Update" class="form-group" method="post">
+
+
+    <div asp-validation-summary="All" class="text-danger font-bold"></div>
+
+    <input type="hidden" asp-for="Id" />
+    
+    <input type="hidden" asp-for="ConcurrencyStamp" />
+
+
+
+    <br />
+
+
+
+    <label asp-for="Name">@SharedLocalizer["Name"]</label>
+    <input type="text" class="form-control" asp-for="Name" />
+    <span asp-validation-for="Name" class="text-danger font-bold"></span>
+    <br />
+ 
+
+
+    <center style="margin:60px auto">
+        <input type="submit" value="@SharedLocalizer["Update"]" class="btn btn-success" />
+        <input type="reset" value="@SharedLocalizer["Cancel"]" class="btn btn-danger" />
+        <a asp-controller="Roles" asp-action="index" class="btn btn-primary">@SharedLocalizer["Return"]</a>
+    </center>
+
+</form>
+<a class="btn btn-primary" asp-action="AddOrRemoveUsers" asp-controller="Roles" asp-route-RoleId="@Model.Id">AddOrRemoveUsers</a>
+
+
+@section Valdiation{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

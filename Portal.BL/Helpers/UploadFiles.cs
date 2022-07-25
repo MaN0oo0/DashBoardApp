@@ -15,11 +15,11 @@ namespace PortalBL.Helpers
 
             try
             {
-                // 1 ) Get Directory
+                // 1) Get Directory
                 string FolderPath = Directory.GetCurrentDirectory() + "/wwwroot/Files/" + FolderName;
 
 
-                //2) Get File Name
+                // 2) Get File Name
                 string FileName = Guid.NewGuid() + Path.GetFileName(File.FileName);
 
 
@@ -27,7 +27,7 @@ namespace PortalBL.Helpers
                 string FinalPath = Path.Combine(FolderPath, FileName);
 
 
-                //4) Save File As Streams "Data Overtime"
+                // 4) Save File As Streams "Data Overtime"
                 using (var Stream = new FileStream(FinalPath, FileMode.Create))
                 {
                     File.CopyTo(Stream);
@@ -39,7 +39,7 @@ namespace PortalBL.Helpers
             {
                 return null;
             }
-
+           
         }
 
 

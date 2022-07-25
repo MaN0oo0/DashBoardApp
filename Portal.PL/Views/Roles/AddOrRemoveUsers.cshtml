@@ -1,0 +1,42 @@
+﻿@model List<UserInRoleVM>
+@inject IEnumerable<IdentityRole> r
+@{
+    ViewData["Title"] = "AddOrRemoveUsers";
+    var RoleId = ViewBag.roleId;
+}
+
+   
+
+            <h2 class="badge rounded-pill bg-secondary p-2 mt-2">Add Or Remove User In Role</h2>
+
+      
+   
+
+<form method="post" class="form-group">
+
+
+
+
+
+    <ul class="list-group">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+
+            <li class="list-group-item">
+                <input asp-for="@Model[i].IsSelected" type="checkbox" class="filled-in">
+                <label asp-for="@Model[i].IsSelected">@Model[i].UserName</label>
+            </li>
+            <input type="hidden" asp-for="@Model[i].UserId" />
+
+            <input type="hidden" asp-for="@Model[i].UserName" />
+
+        }
+    </ul>
+    <div class="card-footer">
+        <input type="submit" value="Edit" class="btn btn-primary" />
+    </div>
+
+
+</form>
+
+<a asp-controller="Roles" asp-action="Update" asp-route-id="@RoleId">Return</a>

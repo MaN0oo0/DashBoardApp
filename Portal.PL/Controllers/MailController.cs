@@ -5,9 +5,11 @@ using System.IO;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PortalPL.Controllers
 {
+    [Authorize(Roles = "Account")]
     public class MailController : Controller
     {
       
@@ -29,7 +31,7 @@ namespace PortalPL.Controllers
                         fileNames = new List<string>();
                         foreach (IFormFile attachment in attachments)
                         {
-                            var path = UploadFiles.UploaderFiles("Docs", attachment);
+                            var path = UploadFiles.UploaderFiles("senders", attachment);
                             using (var stream = new FileStream(path, FileMode.Create))
                             {
                                 attachment.CopyToAsync(stream);
@@ -45,7 +47,7 @@ namespace PortalPL.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Msg"] = "Failed Sent";
+                TempData["Msg"] = "Failed Sent  "+ ex.Message;
             }
             return View();
         }

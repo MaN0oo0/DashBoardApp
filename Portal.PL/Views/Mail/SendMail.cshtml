@@ -1,6 +1,7 @@
 ﻿@model MailVM
 @{
     ViewData["Title"] = "Send Mail";
+
 }
 
 <h2 class="badge rounded-pill bg-secondary p-2 mt-2">Send Mail</h2>
@@ -10,12 +11,12 @@
 
 <!--Section: Mail-->
 
-<form asp-controller="Mail" asp-action="SendMail" style="margin:20px auto" enctype="multipart/form-data">
-    <div asp-validation-summary="All" class="text-center font-bold red-text" style="display:block; width:200px;height:40px">
+<form asp-controller="Mail" asp-action="SendMail" class="m-0 p-0" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="container text-center font-bold red-text" style="display:flex ;">
 
     </div>
 
-    <div style="margin:10px auto">
+    <div style="margin:30px auto" class=" mt-8">
 
         <label asp-for="Name">Your name</label>
         <input type="text" asp-for="Name" class="form-control">
@@ -23,7 +24,7 @@
 
         <br /><br />
         <label asp-for="FromEmail">Your email</label>
-        <input type="email" asp-for="FromEmail" class="form-control" placeholder="Use Your OutLook Mail To Send Any Message">
+        <input type="text" asp-for="FromEmail" class="form-control" placeholder="Use Your OutLook Mail To Send Any Message" value="" autocomplete="off">
         <span asp-validation-for="FromEmail" class="text-danger font-bold"></span>
         <br />
         <br />
@@ -49,12 +50,12 @@
         <label asp-for="Message">Your message</label>
         <textarea type="text" asp-for="Message" name="message" rows="2" class="form-control md-textarea"></textarea>
     </div>
+
     <br />
     <br />
     <div>
-        <label >Attachments</label>
-        
-      
+        <label>Attachments</label>
+
         <input type="file" name="attachments" multiple="multiple" />
     </div>
     <center>

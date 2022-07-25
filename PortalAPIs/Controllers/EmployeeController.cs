@@ -25,7 +25,7 @@ namespace PortalAPIs.Controllers
         //[Route("~/api/Employee/GetData")]
         //public string[] GetData()
         //{
-        //    string[] data = new string[3] {"Mohamed","Ahmed","Orban"};
+        //    string[] data = new string[3] {"Mohamed","Ahmed",""};
         //    return data;
         //}     
         //[HttpGet]

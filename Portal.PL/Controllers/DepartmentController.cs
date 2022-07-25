@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortalBL.Interface;
 using PortalBL.Models;
@@ -7,6 +8,7 @@ using PortalDAL.Entity;
 
 namespace PortalPL.Controllers
 {
+    [Authorize(Roles = "Account")]
     public class DepartmentController : Controller
     {
         

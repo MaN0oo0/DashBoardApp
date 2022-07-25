@@ -1,4 +1,6 @@
 ﻿
+using PortalDAL.Extend;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PortalDAL.Entity;
 using System;
@@ -7,9 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PortalDAL.Database
 {
-    public class ApplicationContext:DbContext
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
 
         public ApplicationContext(DbContextOptions <ApplicationContext> opt):base(opt)
